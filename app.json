@@ -1,0 +1,17 @@
+{
+  "name": "WhatUpApp",
+  "displayName": "WhatUpApp",
+  "expo": {
+    "name": "WhatUpApp",
+    "slug": "WhatUpApp",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
