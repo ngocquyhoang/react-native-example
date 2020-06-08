@@ -1,45 +1,34 @@
+"use strict";
+
 import React from "react";
-import {Platform, StyleSheet, Text, View} from "react-native";
+// eslint-disable-next-line import/no-namespace
+import * as eva from "@eva-design/eva";
+import {
+    ApplicationProvider,
+    Layout,
+    Text,
+    StyleService,
+} from "@ui-kitten/components";
+import {default as theme} from "./theme.json";
 
-const instructions = Platform.select({
-    ios: "Press Cmd+R to reload,\nCmd+D or shake for dev menu",
-    android: "Double tap R on your keyboard to reload,\nShake or press menu button for dev menu",
-});
-
-const appColors = {
-    "primary": "#F5FCFF",
-    "secondary": "#333333",
-};
-
-const styles = StyleSheet.create({
-    container: {
+const styles = StyleService.create({
+    layout: {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: appColors.primary,
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: "center",
-        margin: 10,
-    },
-    instructions: {
-        textAlign: "center",
-        color: appColors.secondary,
-        marginBottom: 5,
     },
 });
 
-const App = () => (
-    <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-    </View>
+const HomeScreen = () => (
+    <Layout style={styles.layout}>
+        <Text category='h1'>HOME</Text>
+    </Layout>
 );
 
-/**
- * React default App module.
- * @return {View} Render view.
- */
+const App = () => (
+    <ApplicationProvider {...eva} theme={{...eva.light, ...theme}}>
+        <HomeScreen />
+    </ApplicationProvider>
+);
+
 export default App;
