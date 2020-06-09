@@ -2,7 +2,7 @@
 
 import React, {useCallback} from "react";
 import PropTypes from "prop-types";
-import {SafeAreaView} from "react-native";
+import {SafeAreaView, StatusBar} from "react-native";
 import {
     Button,
     Divider,
@@ -14,6 +14,7 @@ import {
 const styles = StyleService.create({
     safeAreaView: {
         flex: 1,
+        backgroundColor: "#FFFFFF",
     },
     layout: {
         flex: 1,
@@ -24,13 +25,12 @@ const styles = StyleService.create({
 
 const SessionScreen = ({navigation}) => {
     const openDashboard = useCallback(() => {
-        navigation.navigate("Dashboard").then((r) => {
-            console.log(r);
-        });
+        navigation.navigate("Dashboard");
     }, [navigation]);
 
     return (
         <SafeAreaView style={styles.safeAreaView}>
+            <StatusBar backgroundColor="red" barStyle="dark-content" />
             <TopNavigation title='MyApp' alignment='center'/>
             <Divider/>
             <Layout style={styles.layout}>
@@ -41,7 +41,7 @@ const SessionScreen = ({navigation}) => {
 };
 
 SessionScreen.propTypes = {
-    navigation: PropTypes.class.isRequired,
+    navigation: PropTypes.any.isRequired,
 };
 
 export default SessionScreen;

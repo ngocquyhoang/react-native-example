@@ -3,32 +3,29 @@
 import React from "react";
 // eslint-disable-next-line import/no-namespace
 import * as eva from "@eva-design/eva";
-import {
-    ApplicationProvider,
-    Layout,
-    Text,
-    StyleService,
-} from "@ui-kitten/components";
-import {default as theme} from "./theme.json";
+import {ApplicationProvider, IconRegistry} from "@ui-kitten/components";
+import {EvaIconsPack} from "@ui-kitten/eva-icons";
 
-const styles = StyleService.create({
-    layout: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-    },
-});
+import AppNavigator from "./src/navigation";
+import ThemeContext from "./src/theme-context";
 
-const HomeScreen = () => (
-    <Layout style={styles.layout}>
-        <Text category='h1'>HOME</Text>
-    </Layout>
-);
+const App = () => {
+    const [theme, setTheme] = React.useState("light");
+    const toggleTheme = () => {
+        const nextTheme = theme === "light" ? "dark" : "light";
+        setTheme(nextTheme);
+    };
 
-const App = () => (
-    <ApplicationProvider {...eva} theme={{...eva.light, ...theme}}>
-        <HomeScreen />
-    </ApplicationProvider>
-);
+    return (
+        <>
+            <IconRegistry icons={EvaIconsPack}/>
+            <ThemeContext.Provider value={{theme, toggleTheme}}>
+                <ApplicationProvider {...eva} theme={eva[theme]}>
+                    <AppNavigator/>
+                </ApplicationProvider>
+            </ThemeContext.Provider>
+        </>
+    );
+};
 
 export default App;
